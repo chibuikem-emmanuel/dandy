@@ -32,7 +32,6 @@ interface Hotel {
   bookUrl?: string;
 }
 
-// Clean Unsplash URLs so Next.js handles real-time crisp resizing and DPI density
 const HOTELS_DATA: Hotel[] = [
   {
     id: 1,
@@ -127,11 +126,11 @@ const HOTELS_DATA: Hotel[] = [
 ];
 
 const SECTION_IMAGES: Record<string, string> = {
-  home: "/images/footer.jpeg",
+  home: "/images/NEW3.PNG",
   schedule: "/images/sch2.PNG",
   accommodation: "/images/location.png",
   registry: "/images/storytime.jpeg",
-  faq: "/images/gallery1.jpeg",
+  faq: "/images/footer.jpeg",
 };
 
 export default function SplitWeddingLayout() {
@@ -186,7 +185,7 @@ export default function SplitWeddingLayout() {
     const sections = document.querySelectorAll<HTMLElement>("section[id]");
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      const scrollPosition = window.scrollY + window.innerHeight / 3;
 
       sections.forEach((section) => {
         const top = section.offsetTop;
@@ -227,11 +226,11 @@ export default function SplitWeddingLayout() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 bottom-0 w-[320px] bg-[#F5F2EB] z-50 p-8 flex flex-col justify-between shadow-2xl border-r border-[#C2A675]/30"
+              className="fixed top-0 left-0 bottom-0 w-[280px] sm:w-[320px] bg-[#F5F2EB] z-50 p-6 sm:p-8 flex flex-col justify-between shadow-2xl border-r border-[#C2A675]/30"
             >
               <div>
                 <div className="flex justify-between items-center mb-10">
-                  <h2 className="font-serif text-3xl font-bold tracking-tight text-[#1A1A1A]">
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-[#1A1A1A]">
                     Dan'sJoy26
                   </h2>
                   <button
@@ -242,7 +241,7 @@ export default function SplitWeddingLayout() {
                   </button>
                 </div>
 
-                <nav className="flex flex-col gap-6 text-lg font-serif">
+                <nav className="flex flex-col gap-5 text-base sm:text-lg font-serif">
                   {[
                     { label: "Home", id: "home" },
                     { label: "Schedule", id: "schedule" },
@@ -265,7 +264,7 @@ export default function SplitWeddingLayout() {
               <a
                 href="#rsvp"
                 onClick={() => setIsMenuOpen(false)}
-                className="w-full py-3 text-center border border-[#1A1A1A] text-[#1A1A1A] rounded-full font-semibold hover:bg-[#1A1A1A] hover:text-[#F5F2EB] transition"
+                className="w-full py-3 text-center border border-[#1A1A1A] text-[#1A1A1A] rounded-full font-semibold hover:bg-[#1A1A1A] hover:text-[#F5F2EB] transition text-sm"
               >
                 RSVP
               </a>
@@ -275,9 +274,8 @@ export default function SplitWeddingLayout() {
       </AnimatePresence>
 
       <div className="flex flex-col lg:flex-row min-h-screen">
-        {/* LEFT PANEL */}
-        <div className="w-full lg:w-1/2 h-[60vh] lg:h-screen lg:sticky lg:top-0 relative overflow-hidden bg-[#1A1A1A] flex items-center justify-center">
-          
+        {/* LEFT PANEL: Sticky Header Image */}
+        <div className="sticky top-0 w-full lg:w-1/2 h-[32vh] sm:h-[42vh] lg:h-screen lg:sticky lg:top-0 z-30 overflow-hidden bg-[#1A1A1A] flex items-center justify-center shadow-md lg:shadow-none">
           <div className="absolute inset-0 w-full h-full">
             <Image
               src={previousImgSrc}
@@ -312,72 +310,88 @@ export default function SplitWeddingLayout() {
             </motion.div>
           </AnimatePresence>
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent z-15 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-15 pointer-events-none" />
 
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="absolute top-6 left-6 z-20 bg-white/90 backdrop-blur-md text-[#1A1A1A] px-4 py-2 rounded-full shadow-md hover:bg-white transition flex items-center gap-2 font-sans text-sm font-semibold cursor-pointer"
+            className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 bg-white/90 backdrop-blur-md text-[#1A1A1A] px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow-md hover:bg-white transition flex items-center gap-1.5 sm:gap-2 font-sans text-xs sm:text-sm font-semibold cursor-pointer"
             aria-label="Open navigation menu"
           >
-            <Menu size={18} /> MENU
+            <Menu size={16} className="sm:w-[18px] sm:h-[18px]" /> MENU
           </button>
 
-          <div className="absolute bottom-10 left-8 right-8 z-20 text-white pointer-events-none">
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight mb-3">
+          <div className="absolute bottom-3 left-4 right-4 sm:bottom-8 sm:left-8 sm:right-8 z-20 text-white pointer-events-none">
+            <h1 className="font-serif text-2xl sm:text-5xl lg:text-7xl font-semibold tracking-tight mb-1 sm:mb-3">
               Dan'sJoy<span className="font-light">26</span>
             </h1>
-            <p className="text-sm sm:text-base opacity-95 max-w-md leading-relaxed font-sans font-light">
+            <p className="text-[11px] sm:text-base opacity-95 max-w-md leading-relaxed font-sans font-light line-clamp-2 sm:line-clamp-none">
               We can't wait to share our special day with you! Capture every laugh and dance move, just make sure to get our good sides! 😉📸💃
             </p>
           </div>
         </div>
 
+        {/* STICKY DATE & VENUE BAR FOR MOBILE */}
+        <div className="lg:hidden sticky top-[32vh] sm:top-[42vh] z-20 bg-[#1A1A1A] text-[#F5F2EB] px-4 py-2.5 border-t border-[#C2A675]/30 shadow-md flex items-center justify-between text-xs font-serif">
+          <div className="flex items-center gap-2 truncate">
+            <Calendar size={14} className="text-[#C2A675] shrink-0" />
+            <span className="font-semibold truncate">Sat, Nov 14, 2026 • Rhema Univ. Aba</span>
+          </div>
+          <a
+            href="#rsvp"
+            className="px-3 py-1 bg-[#F5F2EB] text-[#1A1A1A] rounded-full text-[10px] font-sans font-bold tracking-wider uppercase shrink-0"
+          >
+            RSVP
+          </a>
+        </div>
+
         {/* RIGHT PANEL - CONTENT SECTIONS */}
-        <div className="w-full lg:w-1/2 bg-[#F5F2EB]">
-          {/* HOME */}
+        <div className="w-full lg:w-1/2 bg-[#F5F2EB] relative z-10">
+          {/* HOME SECTION */}
           <section
             id="home"
-            className="relative min-h-screen flex flex-col justify-center items-center text-center p-6 lg:p-12 border-b border-stone-300/60 overflow-hidden bg-[#F5F2EB]"
+            className="relative min-h-[calc(100vh-32vh)] lg:min-h-screen flex flex-col justify-center items-center text-center p-6 sm:p-8 lg:p-12 border-b border-stone-300/60 overflow-hidden bg-[#F5F2EB]"
           >
-            <div className="absolute top-0 right-0 w-36 sm:w-48 h-36 sm:h-48 pointer-events-none opacity-40">
+            {/* Top Right Botanical SVG Accent */}
+            <div className="absolute top-0 right-0 w-28 sm:w-48 h-28 sm:h-48 pointer-events-none opacity-40">
               <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-[#3B4728]">
                 <path d="M200,0 C120,20 80,80 50,150 C40,170 30,200 0,200 C50,180 100,140 130,90 C160,40 180,10 200,0 Z" fill="currentColor"/>
                 <path d="M200,40 C140,50 110,100 80,160 C120,120 160,70 200,40 Z" fill="currentColor"/>
               </svg>
             </div>
 
-            <div className="absolute bottom-0 left-0 w-36 sm:w-48 h-36 sm:h-48 pointer-events-none opacity-40 transform rotate-180">
+            {/* Bottom Left Botanical SVG Accent */}
+            <div className="absolute bottom-0 left-0 w-28 sm:w-48 h-28 sm:h-48 pointer-events-none opacity-40 transform rotate-180">
               <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-[#3B4728]">
                 <path d="M200,0 C120,20 80,80 50,150 C40,170 30,200 0,200 C50,180 100,140 130,90 C160,40 180,10 200,0 Z" fill="currentColor"/>
                 <path d="M200,40 C140,50 110,100 80,160 C120,120 160,70 200,40 Z" fill="currentColor"/>
               </svg>
             </div>
 
-            <div className="relative z-10 max-w-lg space-y-6 px-4 py-8">
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] tracking-tight leading-snug">
+            <div className="relative z-10 max-w-lg space-y-4 sm:space-y-6 px-2 sm:px-4 py-6 sm:py-8">
+              <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#1A1A1A] tracking-tight leading-snug">
                 Saturday, November 14, 2026
               </h2>
 
-              <p className="font-serif text-lg sm:text-xl text-stone-800 tracking-wide font-normal max-w-sm mx-auto leading-relaxed">
+              <p className="font-serif text-base sm:text-xl text-stone-800 tracking-wide font-normal max-w-sm mx-auto leading-relaxed">
                 Rhema University Auditorium,<br />Aba, Nigeria
               </p>
 
-              <div className="pt-2 pb-2">
+              <div className="py-1">
                 {timeLeft.isPassed ? (
-                  <p className="font-serif text-xl text-stone-900 font-bold">
+                  <p className="font-serif text-lg sm:text-xl text-stone-900 font-bold">
                     The Wedding Day is Here! 🎉
                   </p>
                 ) : (
-                  <p className="font-sans text-sm sm:text-base text-stone-700 font-medium tracking-wide">
+                  <p className="font-sans text-xs sm:text-base text-stone-700 font-medium tracking-wide">
                     {timeLeft.days} days {timeLeft.hours} hrs {timeLeft.minutes} mins {timeLeft.seconds} secs
                   </p>
                 )}
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <a
                   href="#rsvp"
-                  className="inline-block px-10 py-2.5 rounded-full border border-[#1A1A1A] text-[#1A1A1A] font-sans font-medium text-xs tracking-widest uppercase bg-transparent hover:bg-[#1A1A1A] hover:text-[#F5F2EB] transition-all duration-300"
+                  className="inline-block px-8 sm:px-10 py-2.5 rounded-full border border-[#1A1A1A] text-[#1A1A1A] font-sans font-medium text-xs tracking-widest uppercase bg-transparent hover:bg-[#1A1A1A] hover:text-[#F5F2EB] transition-all duration-300"
                 >
                   RSVP
                 </a>
@@ -385,9 +399,9 @@ export default function SplitWeddingLayout() {
 
               <a
                 href="#schedule"
-                className="inline-flex flex-col items-center pt-8 text-stone-600 hover:text-black transition-colors group cursor-pointer"
+                className="inline-flex flex-col items-center pt-6 sm:pt-8 text-stone-600 hover:text-black transition-colors group cursor-pointer"
               >
-                <span className="font-serif text-sm tracking-wide mb-2 text-stone-700">
+                <span className="font-serif text-xs sm:text-sm tracking-wide mb-1 sm:mb-2 text-stone-700">
                   View Details
                 </span>
                 <motion.div
@@ -398,35 +412,35 @@ export default function SplitWeddingLayout() {
                     ease: "easeInOut",
                   }}
                 >
-                  <ChevronDown size={28} className="text-stone-700 group-hover:text-black" />
+                  <ChevronDown size={24} className="sm:w-7 sm:h-7 text-stone-700 group-hover:text-black" />
                 </motion.div>
               </a>
             </div>
           </section>
 
           {/* SCHEDULE */}
-          <section id="schedule" className="p-8 lg:p-16 space-y-8 border-b border-stone-300/60 bg-[#F5F2EB]">
-            <h2 className="font-serif text-4xl text-center text-[#1A1A1A] mb-8">Schedule</h2>
-            <div className="space-y-6 max-w-lg mx-auto">
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm border border-stone-300/70 flex items-start gap-4">
-                <Clock className="w-6 h-6 text-stone-800 shrink-0 mt-1" />
+          <section id="schedule" className="p-6 sm:p-8 lg:p-16 space-y-6 sm:space-y-8 border-b border-stone-300/60 bg-[#F5F2EB]">
+            <h2 className="font-serif text-3xl sm:text-4xl text-center text-[#1A1A1A] mb-4 sm:mb-8">Schedule</h2>
+            <div className="space-y-4 sm:space-y-6 max-w-lg mx-auto">
+              <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-sm border border-stone-300/70 flex items-start gap-3 sm:gap-4">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-lg text-[#1A1A1A]">
+                  <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">
                     Dan'sJoy26 - Church Ceremony & Reception 💍❤️
                   </h3>
-                  <p className="text-sm text-stone-700 font-semibold mb-2">10:00 AM</p>
-                  <p className="italic text-gray-600 text-sm">
+                  <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">10:00 AM</p>
+                  <p className="italic text-gray-600 text-xs sm:text-sm">
                     "...but I have found him whom my soul loveth..." — Song of Solomon 3:4
                   </p>
                 </div>
               </div>
 
-              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm border border-stone-300/70 flex items-start gap-4">
-                <Calendar className="w-6 h-6 text-stone-800 shrink-0 mt-1" />
+              <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-sm border border-stone-300/70 flex items-start gap-3 sm:gap-4">
+                <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-lg text-[#1A1A1A]">Dan'sJoy26 - Trad & Reception, 30th October 🥂</h3>
-                  <p className="text-sm text-stone-700 font-semibold mb-2">3:00 PM</p>
-                  <p className="text-sm text-gray-600">
+                  <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">Dan'sJoy26 - Trad & Reception, 30th October 🥂</h3>
+                  <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">3:00 PM</p>
+                  <p className="text-xs sm:text-sm text-gray-600">
                     Come ready for an evening of good vibes, plenty to eat, and dancing at the Main Banquet Hall!
                   </p>
                 </div>
@@ -435,16 +449,16 @@ export default function SplitWeddingLayout() {
           </section>
 
           {/* ACCOMMODATION */}
-          <section id="accommodation" className="p-8 lg:p-16 space-y-8 border-b border-stone-300/60 bg-[#F5F2EB]">
-            <div className="text-center space-y-3 max-w-lg mx-auto">
-              <h2 className="font-serif text-4xl text-[#1A1A1A]">Where to Stay</h2>
-              <p className="text-gray-600 text-sm">
+          <section id="accommodation" className="p-6 sm:p-8 lg:p-16 space-y-6 sm:space-y-8 border-b border-stone-300/60 bg-[#F5F2EB]">
+            <div className="text-center space-y-2 sm:space-y-3 max-w-lg mx-auto">
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#1A1A1A]">Where to Stay</h2>
+              <p className="text-gray-600 text-xs sm:text-sm">
                 Here are our favorite nearby hotels with special discounts just for our guests.
               </p>
             </div>
 
             <div className="max-w-md mx-auto relative rounded-2xl overflow-hidden shadow-sm border border-stone-300/70 bg-white">
-              <div className="relative w-full h-[260px] bg-[#E5E3DF]">
+              <div className="relative w-full h-[220px] sm:h-[260px] bg-[#E5E3DF]">
                 <iframe
                   title="Rhema University Aba Map"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.8115682855146!2d7.3542!3d5.1328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10429910f5454157%3A0xb24d08b3e8aa4307!2sRhema%20University!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng"
@@ -452,16 +466,16 @@ export default function SplitWeddingLayout() {
                   loading="lazy"
                   allowFullScreen
                 />
-                <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full shadow-md border border-stone-200 flex items-center gap-1.5 text-xs font-semibold text-[#1A1A1A]">
-                  <MapPin size={14} className="fill-[#1A1A1A] text-white" />
-                  <span>Venue: Rhema University Auditorium</span>
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1 rounded-full shadow-md border border-stone-200 flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-[#1A1A1A] max-w-[90%] truncate">
+                  <MapPin size={13} className="fill-[#1A1A1A] text-white shrink-0" />
+                  <span className="truncate">Venue: Rhema University Auditorium</span>
                 </div>
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2">
                   <a
                     href="https://maps.google.com/?q=Rhema+University+Aba+Nigeria"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-5 py-2 rounded-full bg-white text-[#1A1A1A] border border-stone-300 font-sans text-xs font-semibold shadow-md hover:bg-[#1A1A1A] hover:text-white transition flex items-center gap-2"
+                    className="px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-white text-[#1A1A1A] border border-stone-300 font-sans text-xs font-semibold shadow-md hover:bg-[#1A1A1A] hover:text-white transition flex items-center gap-1.5 sm:gap-2"
                   >
                     <Compass size={14} /> Explore on Map
                   </a>
@@ -469,7 +483,7 @@ export default function SplitWeddingLayout() {
               </div>
             </div>
 
-            <div className="space-y-8 max-w-md mx-auto">
+            <div className="space-y-6 sm:space-y-8 max-w-md mx-auto">
               {HOTELS_DATA.map((hotel) => (
                 <HotelCard key={hotel.id} hotel={hotel} />
               ))}
@@ -479,39 +493,39 @@ export default function SplitWeddingLayout() {
           {/* REGISTRY */}
           <section
             id="registry"
-            className="p-8 lg:p-16 space-y-6 border-b border-stone-300/60 bg-[#F5F2EB] text-center"
+            className="p-6 sm:p-8 lg:p-16 space-y-4 sm:space-y-6 border-b border-stone-300/60 bg-[#F5F2EB] text-center"
           >
-            <h2 className="font-serif text-3xl font-semibold tracking-wider text-[#1A1A1A] uppercase">
+            <h2 className="font-serif text-2xl sm:text-3xl font-semibold tracking-wider text-[#1A1A1A] uppercase">
               Registry
             </h2>
-            <p className="text-sm text-stone-600 max-w-sm mx-auto">
+            <p className="text-xs sm:text-sm text-stone-600 max-w-sm mx-auto">
               Your presence means the world to us! However, if you'd like to gift us something, cash contributions to these account would be greatly appreciated.
             </p>
-            <div className="space-y-2 text-sm text-stone-800 max-w-sm mx-auto font-sans bg-white/80 p-6 rounded-2xl border border-stone-300/70 shadow-sm">
+            <div className="space-y-2 text-xs sm:text-sm text-stone-800 max-w-sm mx-auto font-sans bg-white/80 p-5 sm:p-6 rounded-2xl border border-stone-300/70 shadow-sm text-left sm:text-center">
               <p className="font-medium">
-                Account Name: <span className="font-normal">Agha Dan & Ubani-Ukoma IHECHI</span>
+                Account Name: <span className="font-normal block sm:inline">Agha Dan & Ubani-Ukoma IHECHI</span>
               </p>
               <p className="font-medium">
-                Bank: <span className="font-normal">United Bank for Africa (UBA)</span>
+                Bank: <span className="font-normal block sm:inline">United Bank for Africa (UBA)</span>
               </p>
               <p className="font-medium">
-                Account Number: <span className="font-bold tracking-wider">2421572751</span>
+                Account Number: <span className="font-bold tracking-wider block sm:inline">2421572751</span>
               </p>
             </div>
           </section>
 
           {/* Q & A */}
-          <section id="faq" className="p-8 lg:p-16 space-y-10 bg-[#F5F2EB]">
-            <div className="text-center space-y-4 max-w-lg mx-auto">
-              <h2 className="font-serif text-4xl text-[#1A1A1A]">Q & A</h2>
-              <p className="text-stone-700 text-sm max-w-md mx-auto leading-relaxed">
+          <section id="faq" className="p-6 sm:p-8 lg:p-16 space-y-8 sm:space-y-10 bg-[#F5F2EB]">
+            <div className="text-center space-y-2 sm:space-y-4 max-w-lg mx-auto">
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#1A1A1A]">Q & A</h2>
+              <p className="text-stone-700 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
                 For all our amazing friends and family with a million questions, please check out our Q&A first! It's like Google... but for our wedding 💍🥂
               </p>
             </div>
 
-            <div className="space-y-8 max-w-lg mx-auto text-left text-xs sm:text-sm font-sans text-stone-800">
+            <div className="space-y-6 sm:space-y-8 max-w-lg mx-auto text-left text-xs sm:text-sm font-sans text-stone-800">
               <div>
-                <h3 className="font-bold text-stone-900 text-sm mb-1">
+                <h3 className="font-bold text-stone-900 text-xs sm:text-sm mb-1">
                   When is the RSVP deadline?
                 </h3>
                 <p className="text-stone-700 leading-relaxed">
@@ -520,7 +534,7 @@ export default function SplitWeddingLayout() {
               </div>
 
               <div>
-                <h3 className="font-bold text-stone-900 text-sm mb-1">
+                <h3 className="font-bold text-stone-900 text-xs sm:text-sm mb-1">
                   Is the wedding indoors or outdoors?
                 </h3>
                 <p className="text-stone-700 leading-relaxed">
@@ -529,7 +543,7 @@ export default function SplitWeddingLayout() {
               </div>
 
               <div>
-                <h3 className="font-bold text-stone-900 text-sm mb-1">
+                <h3 className="font-bold text-stone-900 text-xs sm:text-sm mb-1">
                   Can I bring a date?
                 </h3>
                 <p className="text-stone-700">
@@ -538,7 +552,7 @@ export default function SplitWeddingLayout() {
               </div>
 
               <div>
-                <h3 className="font-bold text-stone-900 text-sm mb-1">
+                <h3 className="font-bold text-stone-900 text-xs sm:text-sm mb-1">
                   What will the weather be like?
                 </h3>
                 <p className="text-stone-700">
@@ -547,7 +561,7 @@ export default function SplitWeddingLayout() {
               </div>
 
               <div>
-                <h3 className="font-bold text-stone-900 text-sm mb-1">
+                <h3 className="font-bold text-stone-900 text-xs sm:text-sm mb-1">
                   What should I wear?
                 </h3>
                 <p className="text-stone-700 leading-relaxed">
@@ -557,7 +571,7 @@ export default function SplitWeddingLayout() {
               </div>
 
               <div>
-                <h3 className="font-bold text-stone-900 text-sm mb-1">
+                <h3 className="font-bold text-stone-900 text-xs sm:text-sm mb-1">
                   Are kids welcome?
                 </h3>
                 <p className="text-stone-700 leading-relaxed">
@@ -566,7 +580,7 @@ export default function SplitWeddingLayout() {
               </div>
 
               <div>
-                <h3 className="font-bold text-stone-900 text-sm mb-1">
+                <h3 className="font-bold text-stone-900 text-xs sm:text-sm mb-1">
                   Whom should I call with questions?
                 </h3>
                 <p className="text-stone-700">
@@ -580,12 +594,12 @@ export default function SplitWeddingLayout() {
             </div>
 
             {/* RSVP Form Card */}
-            <div id="rsvp" className="max-w-md mx-auto bg-white p-6 sm:p-8 rounded-2xl border border-stone-300/70 shadow-sm mt-12">
-              <h3 className="font-serif text-2xl text-center text-[#1A1A1A] mb-4">RSVP</h3>
+            <div id="rsvp" className="max-w-md mx-auto bg-white p-5 sm:p-8 rounded-2xl border border-stone-300/70 shadow-sm mt-8 sm:mt-12">
+              <h3 className="font-serif text-xl sm:text-2xl text-center text-[#1A1A1A] mb-4">RSVP</h3>
               {rsvpSubmitted ? (
                 <div className="text-center py-6 space-y-3">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-                  <h4 className="font-serif text-xl text-stone-900">Thank You!</h4>
+                  <CheckCircle2 className="w-10 h-10 sm:w-12 sm:h-12 text-emerald-600 mx-auto" />
+                  <h4 className="font-serif text-lg sm:text-xl text-stone-900">Thank You!</h4>
                   <p className="text-xs text-stone-600">Your RSVP has been submitted successfully.</p>
                 </div>
               ) : (
@@ -596,13 +610,13 @@ export default function SplitWeddingLayout() {
                       type="text"
                       required
                       placeholder="e.g. Guest Name"
-                      className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black"
+                      className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black text-xs"
                     />
                   </div>
 
                   <div>
                     <label className="block font-medium text-stone-700 mb-1">Attendance</label>
-                    <select className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black bg-white">
+                    <select className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black bg-white text-xs">
                       <option value="yes">Joyfully Accepts</option>
                       <option value="no">Regretfully Declines</option>
                     </select>
@@ -619,9 +633,9 @@ export default function SplitWeddingLayout() {
             </div>
 
             {/* Footer */}
-            <footer className="pt-12 pb-6 border-t border-stone-300/60 text-center space-y-4">
-              <p className="font-serif italic text-2xl text-stone-800">Dan'sJoy</p>
-              <div className="flex justify-center gap-6 text-xs text-stone-500 font-sans">
+            <footer className="pt-8 sm:pt-12 pb-6 border-t border-stone-300/60 text-center space-y-4">
+              <p className="font-serif italic text-xl sm:text-2xl text-stone-800">Dan'sJoy</p>
+              <div className="flex justify-center items-center gap-3 sm:gap-6 text-[11px] sm:text-xs text-stone-500 font-sans flex-wrap">
                 <a href="#home" className="hover:text-stone-800 transition">Guest Help</a>
                 <span>•</span>
                 <a href="#home" className="hover:text-stone-800 transition">About</a>
@@ -650,7 +664,7 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
 
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-stone-300/70 shadow-sm hover:shadow-md transition-shadow">
-      <div className="relative h-52 sm:h-56 w-full bg-stone-900 group overflow-hidden">
+      <div className="relative h-48 sm:h-56 w-full bg-stone-900 group overflow-hidden">
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
             key={currentIdx}
@@ -677,18 +691,18 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
 
         <button
           onClick={prevSlide}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition opacity-80 group-hover:opacity-100 z-10"
+          className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition opacity-80 group-hover:opacity-100 z-10"
           aria-label="Previous Image"
         >
-          <ChevronLeft size={18} />
+          <ChevronLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition opacity-80 group-hover:opacity-100 z-10"
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition opacity-80 group-hover:opacity-100 z-10"
           aria-label="Next Image"
         >
-          <ChevronRight size={18} />
+          <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
         </button>
 
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
@@ -704,23 +718,23 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
         </div>
       </div>
 
-      <div className="p-5 space-y-3 font-sans">
+      <div className="p-4 sm:p-5 space-y-3 font-sans">
         <div>
-          <h3 className="font-semibold text-base text-gray-900">{hotel.name}</h3>
+          <h3 className="font-semibold text-sm sm:text-base text-gray-900">{hotel.name}</h3>
           <div className="flex items-center gap-2 mt-1">
             <div className="flex text-amber-500">
               {Array.from({ length: hotel.rating }).map((_, i) => (
-                <Star key={i} size={12} className="fill-amber-500" />
+                <Star key={i} size={11} className="sm:w-[12px] sm:h-[12px] fill-amber-500" />
               ))}
             </div>
-            <span className="text-xs text-gray-500 font-medium">
+            <span className="text-[11px] sm:text-xs text-gray-500 font-medium">
               • {hotel.distance}
             </span>
           </div>
         </div>
 
-        <div className="flex items-start gap-3 pt-1">
-          <div className="relative w-7 h-7 rounded-full overflow-hidden shrink-0 border border-stone-200">
+        <div className="flex items-start gap-2.5 sm:gap-3 pt-1">
+          <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-stone-200">
             <Image
               src={hotel.hostAvatar}
               alt="Host"
@@ -730,7 +744,7 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
               style={{ objectFit: "cover" }}
             />
           </div>
-          <p className="text-xs text-gray-600 leading-relaxed italic">
+          <p className="text-[11px] sm:text-xs text-gray-600 leading-relaxed italic">
             "{hotel.description}"
           </p>
         </div>
@@ -747,8 +761,8 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
           </div>
         )}
 
-        <div className="p-3 bg-stone-50 border border-stone-200 rounded-xl flex items-center gap-2 text-xs text-stone-600">
-          <Info size={15} className="text-stone-800 shrink-0" />
+        <div className="p-2.5 sm:p-3 bg-stone-50 border border-stone-200 rounded-xl flex items-center gap-2 text-[11px] sm:text-xs text-stone-600">
+          <Info size={14} className="sm:w-[15px] sm:h-[15px] text-stone-800 shrink-0" />
           <span>{hotel.statusText}</span>
         </div>
       </div>
