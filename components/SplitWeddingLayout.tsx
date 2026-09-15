@@ -35,7 +35,7 @@ interface Hotel {
 const HOTELS_DATA: Hotel[] = [
   {
     id: 1,
-    name: "Rhema University Guest House",
+    name: "🏨 Don Eric's Hotel & Suites",
     rating: 4,
     distance: "0.1 km (At Venue)",
     images: [
@@ -44,16 +44,16 @@ const HOTELS_DATA: Hotel[] = [
       "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
     ],
     description:
-      "Located directly within the Rhema University Campus premises. Perfect and convenient for wedding guests who prefer zero travel distance.",
+      "Don Erics & Suites/Chibuzor, Azubuike. Moniepoint account number 8273988954.",
     hostAvatar:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
-    statusText: "Special wedding guest discount available.",
-    price: "₦25,000 / night",
+    statusText: "Available for guests.",
+    price: "Classic Rooms cost ₦23,000. Deluxe Rooms cost ₦28,000. Executive Rooms cost ₦33,000. / night",
     bookUrl: "#",
   },
   {
     id: 2,
-    name: "Hotel De La Paix Aba",
+    name: "🏨 Hotel De Laurel",
     rating: 4,
     distance: "1.2 km from venue",
     images: [
@@ -62,16 +62,16 @@ const HOTELS_DATA: Hotel[] = [
       "https://images.unsplash.com/photo-1591088398332-8a7791972843",
     ],
     description:
-      "A serene and comfortable hotel offering premium rooms, high-speed Wi-Fi, 24/7 power, and fine dining close to the university.",
+      "Location: 104 Okpoli-Umuobo Road, Abia State. Email: hoteldelaurel@yahoo.com. Phone: 08144841427 and 08174431133.",
     hostAvatar:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
-    statusText: "Recommended for families & groups.",
-    price: "₦35,000 / night",
+    statusText: "Recommended Rooms.",
+    price: "Royalton Suit is ₦40,000 with a deposit of ₦45,000.#Executive Lounge is ₦35,000 with a deposit of ₦40,000. #Crystal Lounge is ₦30,000 with a deposit of ₦35,000. #Ivory Lounge is ₦25,000 with a deposit of ₦30,000. / night",
     bookUrl: "#",
   },
   {
     id: 3,
-    name: "Enitona Hotel Aba",
+    name: "🏨 Linksview Hotel & Suites, Aba, Abia State",
     rating: 5,
     distance: "2.5 km from venue",
     images: [
@@ -80,16 +80,16 @@ const HOTELS_DATA: Hotel[] = [
       "https://images.unsplash.com/photo-1611892440504-42a792e24d32",
     ],
     description:
-      "Luxury hospitality with spacious suites, outdoor swimming pool, top-tier security, and complimentary breakfast.",
+      "Room categories and rates for single occupancy. A valid payment guarantee (cash, transfer, or approved card) is required for reservations.",
     hostAvatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-    statusText: "Limited executive suites remaining.",
-    price: "₦45,000 / night",
+    statusText: "All suites.",
+price: "#Royal Room, where elegane reigns ₦45,000. #Diplomatic Room, where business meets luxury, ₦55,000. #Executive Room, where excellence meets comfort, ₦60,000. #Ambassadorial Room, where prestige meets perfection, ₦65,000. #Senatorial Suite, where luxury knows no limits, ₦75,000. #Prestige Room, elegance beyond expectations, ₦95,000. / night",
     bookUrl: "#",
   },
   {
     id: 4,
-    name: "Brites Suites Aba",
+    name: "🏨 Luxury City Hotels – Classic",
     rating: 4,
     distance: "3.1 km from venue",
     images: [
@@ -98,16 +98,16 @@ const HOTELS_DATA: Hotel[] = [
       "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af",
     ],
     description:
-      "Modern boutique hotel featuring cozy climate-controlled rooms, ambient lounge bar, and fast access to Aba city center.",
+      "Tagline: A City to Be Discovered.",
     hostAvatar:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
     statusText: "Standard rooms available.",
-    price: "₦30,000 / night",
+    price: "#Silver Classic costs ₦25,000. #Gold Classic costs ₦25,000. #Diamond Classic costs ₦30,000. #Platinum Classic costs ₦30,000. #Classic Mini Suites cost ₦30,000. / night",
     bookUrl: "#",
   },
   {
     id: 5,
-    name: "Pinnacle Hotels Aba",
+    name: "🏨 Luxury City Hotels – Royal",
     rating: 4,
     distance: "4.0 km from venue",
     images: [
@@ -116,11 +116,11 @@ const HOTELS_DATA: Hotel[] = [
       "https://images.unsplash.com/photo-1616046229478-9901c5536a45",
     ],
     description:
-      "Elegant accommodation with stylish interiors, ample parking space, and friendly service tailored for wedding visitors.",
+      "Tagline: A City to Be Discovered.",
     hostAvatar:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
     statusText: "Booking open for wedding weekend.",
-    price: "₦28,000 / night",
+    price: "#Classic Royale costs ₦25,000. #Deluxe Royale costs ₦30,000. #Superior Room costs ₦40,000. #Exclusive Royale costs ₦80,000. #Classic Exclusive costs ₦30,000. #Deluxe Exclusive costs ₦30,000. #Royal Suites cost ₦60,000. / night",
     bookUrl: "#",
   },
 ];
@@ -426,11 +426,24 @@ export default function SplitWeddingLayout() {
                 <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">
+                     Dan'sJoy26 - Trad & Reception, 30th October 🥂
+                  </h3>
+                  <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">3:00 PM</p>
+                  <p className="italic text-gray-600 text-xs sm:text-sm">
+                    Cultural rites, family introductions, and traditional festivities at No. 4 Ubani Ukoma Close, Ogborhill, Aba.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-sm border border-stone-300/70 flex items-start gap-3 sm:gap-4">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">
                     Dan'sJoy26 - Church Ceremony & Reception 💍❤️
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">10:00 AM</p>
                   <p className="italic text-gray-600 text-xs sm:text-sm">
-                    "...but I have found him whom my soul loveth..." — Song of Solomon 3:4
+                    The holy solemnization of matrimony and exchange of vows at Rhema University Auditorium, Aba.
                   </p>
                 </div>
               </div>
@@ -438,10 +451,10 @@ export default function SplitWeddingLayout() {
               <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-sm border border-stone-300/70 flex items-start gap-3 sm:gap-4">
                 <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">Dan'sJoy26 - Trad & Reception, 30th October 🥂</h3>
-                  <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">3:00 PM</p>
+                  <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">Wedding Reception 💍❤️🥂</h3>
+                  <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">1:00 PM</p>
                   <p className="text-xs sm:text-sm text-gray-600">
-                    Come ready for an evening of good vibes, plenty to eat, and dancing at the Main Banquet Hall!
+                    The Reception at Rhema University Auditorium, Aba.
                   </p>
                 </div>
               </div>
@@ -584,10 +597,14 @@ export default function SplitWeddingLayout() {
                   Whom should I call with questions?
                 </h3>
                 <p className="text-stone-700">
-                  Please call our lovely event planner:<br />
-                  <span className="font-medium">Brenda Adori:</span>{" "}
-                  <a href="tel:+2348164802004" className="underline hover:text-black">
-                    +234 816 480 2004
+                  Please call our lovely event planners:<br />
+                  <span className="font-medium">Contacts:</span>{" "}
+                  <a href="#" className="underline hover:text-black">
+                    0810 462 6375<br></br>
+                    0903 305 2748<br></br>
+                    0810 395 9630
+
+
                   </a>
                 </p>
               </div>
