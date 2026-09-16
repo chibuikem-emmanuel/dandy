@@ -606,7 +606,7 @@ export default function SplitWeddingLayout() {
                 <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">
-                    Dan'sJoy26 - Trad & Reception, 30th October 🥂
+                    Dan'sJoy26 - Trad & Reception, Fri. 30th October 🥂
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">3:00 PM</p>
                   <p className="italic text-gray-600 text-xs sm:text-sm">
@@ -619,7 +619,7 @@ export default function SplitWeddingLayout() {
                 <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">
-                    Dan'sJoy26 - Church Ceremony & Reception 💍❤️
+                    Dan'sJoy26 - Church Ceremony & Reception, Sat. 14th November 💍❤️
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">10:00 AM</p>
                   <p className="italic text-gray-600 text-xs sm:text-sm">
@@ -635,6 +635,36 @@ export default function SplitWeddingLayout() {
                   <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">1:00 PM</p>
                   <p className="text-xs sm:text-sm text-gray-600">
                     The Reception at Rhema University Auditorium, Aba.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-sm border border-stone-300/70 flex items-start gap-3 sm:gap-4">
+              ✒️
+                <div>
+                  <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">Our Journey❤️</h3>
+                  <p className="text-xs sm:text-sm text-gray-600">
+                    Some love stories begin with fireworks.
+                    <br></br>
+                    Ours began with something quieter… and far more lasting.
+                    It started the day our paths crossed in a way that felt almost ordinary at first—until it wasn’t. There was an ease between us from the very beginning, a gentle recognition that made the world feel a little softer. <br></br>
+
+                    Conversations that should have been small stretched into hours. Laughter came easily. Silence felt comfortable. We didn’t know it then, but something rare had already begun to take root.<br></br>
+                    As the days turned into weeks and the weeks into months, we discovered each other slowly, carefully, completely. We learned the way the other smiled when they were truly happy, the quiet ways we showed care, the dreams we carried and the fears we rarely spoke aloud. With Ihechi, I found safety. With me, Ihechi found home. We became each other’s favorite place to land.<br></br>
+
+                    There were ordinary moments that somehow felt extraordinary: shared meals that turned into late-night talks, quiet evenings that filled the room with warmth, and the simple joy of choosing each other again and again. Through every season, bright ones and the harder ones, we grew, not just side by side, but into each other. Love taught us patience. It taught us grace. It taught us that the most beautiful things are often built quietly, day by day.<br></br>
+                    And then came the moment that changed everything.<br></br>
+
+                    When the question was asked and the answer was yes, time seemed to pause. In that sacred space between two hearts, we both knew: this was the beginning of forever. Not a perfect story, but our story, one written with intention, kindness, and a love that keeps choosing the other, every single day.<br></br>
+
+                    Today, as we stand on the edge of becoming husband and wife, we look back with full hearts and look forward with even fuller ones.<br></br>
+
+                    This is our love journey.<br></br>
+                    This is our forever.<br></br>
+                    And we cannot wait to walk the rest of it together, hand in hand, heart to heart, always.<br></br>
+                    With love.<br></br>
+
+                    Dan & Rejoice
                   </p>
                 </div>
               </div>
