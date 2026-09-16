@@ -726,7 +726,7 @@ export default function SplitWeddingLayout() {
             </p>
             <div className="space-y-2 text-xs sm:text-sm text-stone-800 max-w-sm mx-auto font-sans bg-white/80 p-5 sm:p-6 rounded-2xl border border-stone-300/70 shadow-sm text-left sm:text-center">
               <p className="font-medium">
-                Account Name: <span className="font-normal block sm:inline">Agha Dan & Ubani-Ukoma ihechi</span>
+                Account Name: <span className="font-normal block sm:inline">Agha Dan & Ubani-Ukoma Ihechi</span>
               </p>
               <p className="font-medium">
                 Bank: <span className="font-normal block sm:inline">United Bank for Africa (UBA)</span>
