@@ -11,13 +11,16 @@ import {
   ChevronRight,
   Star,
   MapPin,
-  Info,
   ExternalLink,
   Compass,
   Calendar,
   Clock,
   CheckCircle2,
+  Lock,
+  UserCheck,
+  RefreshCw,
 } from "lucide-react";
+import api from "@/lib/api";
 
 interface Hotel {
   id: number;
@@ -30,6 +33,13 @@ interface Hotel {
   statusText: string;
   price?: string;
   bookUrl?: string;
+}
+
+interface RsvpGuest {
+  id: number | string;
+  full_name: string;
+  attendance: "yes" | "no";
+  created_at?: string;
 }
 
 const HOTELS_DATA: Hotel[] = [
@@ -48,7 +58,8 @@ const HOTELS_DATA: Hotel[] = [
     hostAvatar:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb",
     statusText: "Available for guests.",
-    price: "Classic Rooms cost ₦23,000. Deluxe Rooms cost ₦28,000. Executive Rooms cost ₦33,000. / night",
+    price:
+      "Classic Rooms cost ₦23,000. Deluxe Rooms cost ₦28,000. Executive Rooms cost ₦33,000. / night",
     bookUrl: "#",
   },
   {
@@ -66,7 +77,8 @@ const HOTELS_DATA: Hotel[] = [
     hostAvatar:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
     statusText: "Recommended Rooms.",
-    price: "Royalton Suit is ₦40,000 with a deposit of ₦45,000.#Executive Lounge is ₦35,000 with a deposit of ₦40,000. #Crystal Lounge is ₦30,000 with a deposit of ₦35,000. #Ivory Lounge is ₦25,000 with a deposit of ₦30,000. / night",
+    price:
+      "Royalton Suit is ₦40,000 with a deposit of ₦45,000. #Executive Lounge is ₦35,000 with a deposit of ₦40,000. #Crystal Lounge is ₦30,000 with a deposit of ₦35,000. #Ivory Lounge is ₦25,000 with a deposit of ₦30,000. / night",
     bookUrl: "#",
   },
   {
@@ -84,7 +96,8 @@ const HOTELS_DATA: Hotel[] = [
     hostAvatar:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
     statusText: "All suites.",
-price: "#Royal Room, where elegane reigns ₦45,000. #Diplomatic Room, where business meets luxury, ₦55,000. #Executive Room, where excellence meets comfort, ₦60,000. #Ambassadorial Room, where prestige meets perfection, ₦65,000. #Senatorial Suite, where luxury knows no limits, ₦75,000. #Prestige Room, elegance beyond expectations, ₦95,000. / night",
+    price:
+      "#Royal Room ₦45,000. #Diplomatic Room ₦55,000. #Executive Room ₦60,000. #Ambassadorial Room ₦65,000. #Senatorial Suite ₦75,000. #Prestige Room ₦95,000. / night",
     bookUrl: "#",
   },
   {
@@ -97,12 +110,12 @@ price: "#Royal Room, where elegane reigns ₦45,000. #Diplomatic Room, where bus
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
       "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af",
     ],
-    description:
-      "Tagline: A City to Be Discovered.",
+    description: "Tagline: A City to Be Discovered.",
     hostAvatar:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
     statusText: "Standard rooms available.",
-    price: "#Silver Classic costs ₦25,000. #Gold Classic costs ₦25,000. #Diamond Classic costs ₦30,000. #Platinum Classic costs ₦30,000. #Classic Mini Suites cost ₦30,000. / night",
+    price:
+      "#Silver Classic ₦25,000. #Gold Classic ₦25,000. #Diamond Classic ₦30,000. #Platinum Classic ₦30,000. #Classic Mini Suites ₦30,000. / night",
     bookUrl: "#",
   },
   {
@@ -115,12 +128,12 @@ price: "#Royal Room, where elegane reigns ₦45,000. #Diplomatic Room, where bus
       "https://images.unsplash.com/photo-1505691938895-1758d7feb511",
       "https://images.unsplash.com/photo-1616046229478-9901c5536a45",
     ],
-    description:
-      "Tagline: A City to Be Discovered.",
+    description: "Tagline: A City to Be Discovered.",
     hostAvatar:
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
     statusText: "Booking open for wedding weekend.",
-    price: "#Classic Royale costs ₦25,000. #Deluxe Royale costs ₦30,000. #Superior Room costs ₦40,000. #Exclusive Royale costs ₦80,000. #Classic Exclusive costs ₦30,000. #Deluxe Exclusive costs ₦30,000. #Royal Suites cost ₦60,000. / night",
+    price:
+      "#Classic Royale ₦25,000. #Deluxe Royale ₦30,000. #Superior Room ₦40,000. #Exclusive Royale ₦80,000. #Classic Exclusive ₦30,000. #Deluxe Exclusive ₦30,000. #Royal Suites ₦60,000. / night",
     bookUrl: "#",
   },
 ];
@@ -133,16 +146,31 @@ const SECTION_IMAGES: Record<string, string> = {
   faq: "/images/footer.jpeg",
 };
 
+const TARGET_DATE = new Date("2026-11-14T10:30:00+01:00").getTime();
+
 export default function SplitWeddingLayout() {
   const [activeSection, setActiveSection] = useState<string>("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
 
+  // RSVP Form States
+  const [fullName, setFullName] = useState("");
+  const [attendance, setAttendance] = useState<"yes" | "no">("yes");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [rsvpError, setRsvpError] = useState("");
+
+  // Admin Modal States
+  const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [passcode, setPasscode] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authError, setAuthError] = useState("");
+  const [rsvpList, setRsvpList] = useState<RsvpGuest[]>([]);
+  const [isLoadingAdmin, setIsLoadingAdmin] = useState(false);
+
   const [currentImgSrc, setCurrentImgSrc] = useState(SECTION_IMAGES.home);
   const [previousImgSrc, setPreviousImgSrc] = useState(SECTION_IMAGES.home);
 
-  const targetDate = new Date("2026-11-14T10:30:00+01:00").getTime();
-
+  
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -162,7 +190,7 @@ export default function SplitWeddingLayout() {
   useEffect(() => {
     const updateCountdown = () => {
       const now = new Date().getTime();
-      const difference = targetDate - now;
+      const difference = TARGET_DATE - now;
 
       if (difference <= 0) {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isPassed: true });
@@ -179,7 +207,7 @@ export default function SplitWeddingLayout() {
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
-  }, [targetDate]);
+  }, []);
 
   useEffect(() => {
     const sections = document.querySelectorAll<HTMLElement>("section[id]");
@@ -204,13 +232,57 @@ export default function SplitWeddingLayout() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleRsvpSubmit = (e: React.FormEvent) => {
+  // Fetch RSVPs from API Backend
+  const loadRsvps = async () => {
+    setIsLoadingAdmin(true);
+    try {
+      const response = await api.get("/rsvp/");
+      setRsvpList(response.data);
+    } catch (e) {
+      console.error("Failed to load RSVP entries", e);
+    } finally {
+      setIsLoadingAdmin(false);
+    }
+  };
+
+  const handleRsvpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setRsvpSubmitted(true);
+    if (!fullName.trim()) return;
+
+    setIsSubmitting(true);
+    setRsvpError("");
+
+    try {
+      await api.post("/rsvp/", {
+        full_name: fullName.trim(),
+        attendance: attendance,
+      });
+      setRsvpSubmitted(true);
+      setFullName("");
+    } catch (error: any) {
+      console.error("RSVP Submission Error:", error);
+      const message = error?.response?.data?.detail || error?.response?.data?.message || "Could not submit RSVP. Please try again.";
+      setRsvpError(typeof message === "string" ? message : "Could not submit RSVP. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+
+  const handleAdminAuth = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passcode === "2026") {
+      setIsAuthenticated(true);
+      setAuthError("");
+      loadRsvps();
+    } else {
+      setAuthError("Invalid passcode. Access denied.");
+    }
   };
 
   return (
     <div className="relative min-h-screen bg-[#F5F2EB] text-[#1A1A1A]">
+      {/* Navigation Drawer */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
@@ -268,6 +340,116 @@ export default function SplitWeddingLayout() {
               >
                 RSVP
               </a>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Admin Dashboard Modal */}
+      <AnimatePresence>
+        {isAdminOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsAdminOpen(false)}
+              className="fixed inset-0 bg-black z-50"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="fixed inset-4 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:w-full sm:max-w-2xl bg-white rounded-2xl p-6 sm:p-8 z-50 shadow-2xl flex flex-col max-h-[90vh] overflow-hidden"
+            >
+              <div className="flex justify-between items-center pb-4 border-b border-stone-200 mb-4">
+                <div className="flex items-center gap-2">
+                  <UserCheck className="text-emerald-700" size={22} />
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1A1A1A]">
+                    Guest List Admin
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setIsAdminOpen(false)}
+                  className="p-1 hover:bg-stone-100 rounded-full text-stone-600"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {!isAuthenticated ? (
+                <form onSubmit={handleAdminAuth} className="space-y-4 py-6">
+                  <div className="flex items-center gap-2 text-stone-600 text-sm mb-2">
+                    <Lock size={16} /> Enter admin passcode to view guest responses.
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="Enter Passcode"
+                    value={passcode}
+                    onChange={(e) => setPasscode(e.target.value)}
+                    className="w-full px-4 py-2.5 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
+                  />
+                  {authError && (
+                    <p className="text-red-600 text-xs font-semibold">{authError}</p>
+                  )}
+                  <button
+                    type="submit"
+                    className="w-full py-2.5 bg-[#1A1A1A] text-white font-semibold rounded-lg hover:bg-black transition text-sm"
+                  >
+                    Authenticate
+                  </button>
+                </form>
+              ) : (
+                <div className="flex-1 flex flex-col min-h-0">
+                  <div className="flex items-center justify-between mb-4 bg-stone-100 p-3 rounded-xl text-xs sm:text-sm">
+                    <span className="font-semibold text-stone-800">
+                      Total RSVPs: {rsvpList.length}
+                    </span>
+                    <button
+                      onClick={loadRsvps}
+                      disabled={isLoadingAdmin}
+                      className="flex items-center gap-1 text-stone-600 hover:text-black font-medium disabled:opacity-50"
+                    >
+                      <RefreshCw size={14} className={isLoadingAdmin ? "animate-spin" : ""} /> Refresh
+                    </button>
+                  </div>
+
+                  <div className="flex-1 overflow-y-auto space-y-2 pr-1">
+                    {isLoadingAdmin ? (
+                      <p className="text-stone-500 text-center py-8 text-sm">
+                        Loading guests from server...
+                      </p>
+                    ) : rsvpList.length === 0 ? (
+                      <p className="text-stone-500 text-center py-8 text-sm">
+                        No RSVP submissions recorded yet.
+                      </p>
+                    ) : (
+                      rsvpList.map((guest) => (
+                        <div
+                          key={guest.id}
+                          className="flex items-center justify-between p-3.5 bg-stone-50 rounded-xl border border-stone-200 text-xs sm:text-sm"
+                        >
+                          <div>
+                            <p className="font-bold text-stone-900">{guest.full_name}</p>
+                            <p className="text-[10px] sm:text-xs text-stone-500">
+                              {guest.created_at ? new Date(guest.created_at).toLocaleString() : ""}
+                            </p>
+                          </div>
+                          <span
+                            className={`px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider ${
+                              guest.attendance === "yes"
+                                ? "bg-emerald-100 text-emerald-800"
+                                : "bg-rose-100 text-rose-800"
+                            }`}
+                          >
+                            {guest.attendance === "yes" ? "Attending" : "Declined"}
+                          </span>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              )}
             </motion.div>
           </>
         )}
@@ -351,7 +533,6 @@ export default function SplitWeddingLayout() {
             id="home"
             className="relative min-h-[calc(100vh-32vh)] lg:min-h-screen flex flex-col justify-center items-center text-center p-6 sm:p-8 lg:p-12 border-b border-stone-300/60 overflow-hidden bg-[#F5F2EB]"
           >
-            {/* Top Right Botanical SVG Accent */}
             <div className="absolute top-0 right-0 w-28 sm:w-48 h-28 sm:h-48 pointer-events-none opacity-40">
               <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-[#3B4728]">
                 <path d="M200,0 C120,20 80,80 50,150 C40,170 30,200 0,200 C50,180 100,140 130,90 C160,40 180,10 200,0 Z" fill="currentColor"/>
@@ -359,7 +540,6 @@ export default function SplitWeddingLayout() {
               </svg>
             </div>
 
-            {/* Bottom Left Botanical SVG Accent */}
             <div className="absolute bottom-0 left-0 w-28 sm:w-48 h-28 sm:h-48 pointer-events-none opacity-40 transform rotate-180">
               <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-[#3B4728]">
                 <path d="M200,0 C120,20 80,80 50,150 C40,170 30,200 0,200 C50,180 100,140 130,90 C160,40 180,10 200,0 Z" fill="currentColor"/>
@@ -426,7 +606,7 @@ export default function SplitWeddingLayout() {
                 <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">
-                     Dan'sJoy26 - Trad & Reception, 30th October 🥂
+                    Dan'sJoy26 - Trad & Reception, 30th October 🥂
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">3:00 PM</p>
                   <p className="italic text-gray-600 text-xs sm:text-sm">
@@ -600,11 +780,9 @@ export default function SplitWeddingLayout() {
                   Please call our lovely event planners:<br />
                   <span className="font-medium">Contacts:</span>{" "}
                   <a href="#" className="underline hover:text-black">
-                    0810 462 6375<br></br>
-                    0903 305 2748<br></br>
+                    0810 462 6375<br />
+                    0903 305 2748<br />
                     0810 395 9630
-
-
                   </a>
                 </p>
               </div>
@@ -618,6 +796,12 @@ export default function SplitWeddingLayout() {
                   <CheckCircle2 className="w-10 h-10 sm:w-12 sm:h-12 text-emerald-600 mx-auto" />
                   <h4 className="font-serif text-lg sm:text-xl text-stone-900">Thank You!</h4>
                   <p className="text-xs text-stone-600">Your RSVP has been submitted successfully.</p>
+                  <button
+                    onClick={() => setRsvpSubmitted(false)}
+                    className="text-xs underline text-stone-500 hover:text-black pt-2"
+                  >
+                    Submit another response
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleRsvpSubmit} className="space-y-4 font-sans text-xs">
@@ -626,6 +810,8 @@ export default function SplitWeddingLayout() {
                     <input
                       type="text"
                       required
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
                       placeholder="e.g. Guest Name"
                       className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black text-xs"
                     />
@@ -633,17 +819,28 @@ export default function SplitWeddingLayout() {
 
                   <div>
                     <label className="block font-medium text-stone-700 mb-1">Attendance</label>
-                    <select className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black bg-white text-xs">
+                    <select
+                      value={attendance}
+                      onChange={(e) => setAttendance(e.target.value as "yes" | "no")}
+                      className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-black bg-white text-xs"
+                    >
                       <option value="yes">Joyfully Accepts</option>
                       <option value="no">Regretfully Declines</option>
                     </select>
                   </div>
 
+                  {rsvpError && (
+                    <p className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700">
+                      {rsvpError}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full py-2.5 bg-[#1A1A1A] text-white font-semibold rounded-lg hover:bg-black transition"
+                    disabled={isSubmitting}
+                    className="w-full py-2.5 bg-[#1A1A1A] text-white font-semibold rounded-lg hover:bg-black transition disabled:opacity-50"
                   >
-                    Submit RSVP
+                    {isSubmitting ? "Submitting..." : "Submit RSVP"}
                   </button>
                 </form>
               )}
@@ -657,11 +854,15 @@ export default function SplitWeddingLayout() {
                 <span>•</span>
                 <a href="#home" className="hover:text-stone-800 transition">About</a>
                 <span>•</span>
-                <a href="#home" className="hover:text-stone-800 transition">Go to the top</a>
+                <button
+                  onClick={() => setIsAdminOpen(true)}
+                  className="hover:text-stone-800 transition font-medium text-stone-600 underline"
+                >
+                  Admin Access
+                </button>
               </div>
             </footer>
           </section>
-
         </div>
       </div>
     </div>
@@ -702,85 +903,70 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute top-3 left-3 bg-black/60 text-white text-[10px] font-mono px-2 py-0.5 rounded-full backdrop-blur-sm z-10">
-          {currentIdx + 1}/{hotel.images.length}
-        </div>
-
-        <button
-          onClick={prevSlide}
-          className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition opacity-80 group-hover:opacity-100 z-10"
-          aria-label="Previous Image"
-        >
-          <ChevronLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition opacity-80 group-hover:opacity-100 z-10"
-          aria-label="Next Image"
-        >
-          <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
-        </button>
-
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
-          {hotel.images.map((_, i) => (
+        {hotel.images.length > 1 && (
+          <>
             <button
-              key={i}
-              onClick={() => setCurrentIdx(i)}
-              className={`w-1.5 h-1.5 rounded-full transition-all ${
-                i === currentIdx ? "bg-white w-4" : "bg-white/50"
-              }`}
-            />
-          ))}
-        </div>
+              onClick={prevSlide}
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-1.5 rounded-full transition opacity-0 group-hover:opacity-100"
+              aria-label="Previous Image"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-1.5 rounded-full transition opacity-0 group-hover:opacity-100"
+              aria-label="Next Image"
+            >
+              <ChevronRight size={16} />
+            </button>
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+              {hotel.images.map((_, i) => (
+                <div
+                  key={i}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${
+                    i === currentIdx ? "bg-white w-3" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
       <div className="p-4 sm:p-5 space-y-3 font-sans">
-        <div>
-          <h3 className="font-semibold text-sm sm:text-base text-gray-900">{hotel.name}</h3>
-          <div className="flex items-center gap-2 mt-1">
-            <div className="flex text-amber-500">
-              {Array.from({ length: hotel.rating }).map((_, i) => (
-                <Star key={i} size={11} className="sm:w-[12px] sm:h-[12px] fill-amber-500" />
-              ))}
+        <div className="flex justify-between items-start gap-2">
+          <div>
+            <h4 className="font-bold text-stone-900 text-sm sm:text-base">{hotel.name}</h4>
+            <div className="flex items-center gap-1 text-xs text-stone-500 mt-0.5">
+              <MapPin size={12} className="text-stone-400" />
+              <span>{hotel.distance}</span>
             </div>
-            <span className="text-[11px] sm:text-xs text-gray-500 font-medium">
-              • {hotel.distance}
-            </span>
+          </div>
+          <div className="flex items-center gap-0.5 bg-amber-50 border border-amber-200/60 px-2 py-0.5 rounded-md text-amber-800 text-xs font-semibold shrink-0">
+            <Star size={12} className="fill-amber-400 text-amber-400" />
+            <span>{hotel.rating}</span>
           </div>
         </div>
 
-        <div className="flex items-start gap-2.5 sm:gap-3 pt-1">
-          <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden shrink-0 border border-stone-200">
-            <Image
-              src={hotel.hostAvatar}
-              alt="Host"
-              fill
-              quality={85}
-              sizes="50px"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-          <p className="text-[11px] sm:text-xs text-gray-600 leading-relaxed italic">
-            "{hotel.description}"
-          </p>
-        </div>
+        <p className="text-xs text-stone-600 line-clamp-2">{hotel.description}</p>
 
         {hotel.price && (
-          <div className="flex items-center justify-between pt-2 border-t border-stone-100">
-            <span className="text-xs font-bold text-stone-900">{hotel.price}</span>
-            <a
-              href={hotel.bookUrl}
-              className="text-xs font-semibold text-stone-800 hover:underline flex items-center gap-1"
-            >
-              Book Room <ExternalLink size={12} />
-            </a>
+          <div className="p-2.5 bg-stone-50 rounded-lg text-[11px] sm:text-xs text-stone-700 border border-stone-200/60">
+            <span className="font-semibold text-stone-900 block mb-0.5">Pricing:</span>
+            {hotel.price}
           </div>
         )}
 
-        <div className="p-2.5 sm:p-3 bg-stone-50 border border-stone-200 rounded-xl flex items-center gap-2 text-[11px] sm:text-xs text-stone-600">
-          <Info size={14} className="sm:w-[15px] sm:h-[15px] text-stone-800 shrink-0" />
-          <span>{hotel.statusText}</span>
+        <div className="pt-2 flex items-center justify-between border-t border-stone-100">
+          <span className="text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+            {hotel.statusText}
+          </span>
+          <a
+            href={hotel.bookUrl || "#"}
+            className="text-xs font-semibold text-stone-900 hover:text-black flex items-center gap-1 hover:underline"
+          >
+            Book Room <ExternalLink size={12} />
+          </a>
         </div>
       </div>
     </div>
