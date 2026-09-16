@@ -761,7 +761,7 @@ export default function SplitWeddingLayout() {
                   Is the wedding indoors or outdoors?
                 </h3>
                 <p className="text-stone-700 leading-relaxed">
-                  Our wedding ceremony will be held indoors in the hall, the same spot where the trad and reception will happen too. No need to wander off... Just sit tight, eat, dance, and let the love and relief find you! 🥂💃🙌
+                  Our wedding ceremony will be held indoors in the hall, the same spot where the reception will happen too. No need to wander off... Just sit tight, eat, dance, and let the love and relief find you! 🥂💃🙌
                 </p>
               </div>
 
