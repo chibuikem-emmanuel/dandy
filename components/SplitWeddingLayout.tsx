@@ -626,6 +626,7 @@ export default function SplitWeddingLayout() {
                     The holy solemnization of matrimony and exchange of vows at Rhema University Auditorium, Aba.<br></br><br></br>
 
                       Colours of the Day are:
+                      <br></br>
                       •
                       <b>Burgundy</b>
                       <br></br>
@@ -641,7 +642,6 @@ export default function SplitWeddingLayout() {
                       •
                       <b>Emerald Green</b>
                       <br></br>
-                      •
                   </p>
                 </div>
               </div>
