@@ -139,7 +139,7 @@ const HOTELS_DATA: Hotel[] = [
 ];
 
 const SECTION_IMAGES: Record<string, string> = {
-  home: "/images/NEW3.PNG",
+  home: "/images/crop2.jpeg",
   schedule: "/images/sch2.PNG",
   accommodation: "/images/location.png",
   registry: "/images/storytime.jpeg",
@@ -788,6 +788,17 @@ export default function SplitWeddingLayout() {
                   What should I wear?
                 </h3>
                 <p className="text-stone-700 leading-relaxed">
+                  Colours of the Day are:
+                      •
+                      Burgundy
+                      •
+                      Gold
+                      •
+                      Dusty Rose
+                      •
+                      Beige
+                      •
+                      Olive Green•<br></br><br></br>
                   Think Whimsical Elegance! Stylish, romantic, floaty fabrics, soft colours and shoes that won't sink into the lawn (plus your dancing shoes).<br />
                   <em>P.S. Please do not dress "casually".</em>
                 </p>
