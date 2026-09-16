@@ -623,7 +623,19 @@ export default function SplitWeddingLayout() {
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">10:00 AM</p>
                   <p className="italic text-gray-600 text-xs sm:text-sm">
-                    The holy solemnization of matrimony and exchange of vows at Rhema University Auditorium, Aba.
+                    The holy solemnization of matrimony and exchange of vows at Rhema University Auditorium, Aba.<br></br>
+
+                      Colours of the Day are:
+                      •
+                      Burgundy
+                      •
+                      Gold
+                      •
+                      Dusty Rose
+                      •
+                      Beige
+                      •
+                      Emerald Green•
                   </p>
                 </div>
               </div>
@@ -798,7 +810,7 @@ export default function SplitWeddingLayout() {
                       •
                       Beige
                       •
-                      Olive Green•<br></br><br></br>
+                      Emerald Green•<br></br><br></br>
                   Think Whimsical Elegance! Stylish, romantic, floaty fabrics, soft colours and shoes that won't sink into the lawn (plus your dancing shoes).<br />
                   <em>P.S. Please do not dress "casually".</em>
                 </p>
