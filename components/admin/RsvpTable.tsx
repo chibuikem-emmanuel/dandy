@@ -35,7 +35,7 @@ export default function RsvpTable({ guests, onDelete }: RsvpTableProps) {
                 </span>
               </td>
               <td className="p-4 text-xs text-stone-500">
-                {new Date(guest.created_at).toLocaleString()}
+                {guest.created_at ? new Date(guest.created_at).toLocaleString() : "N/A"}
               </td>
               <td className="p-4 text-right">
                 <button
