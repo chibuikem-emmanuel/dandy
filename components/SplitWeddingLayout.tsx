@@ -647,22 +647,22 @@ export default function SplitWeddingLayout() {
                     Some love stories begin with fireworks.
                     <br></br>
                     Ours began with something quieter… and far more lasting.
-                    It started the day our paths crossed in a way that felt almost ordinary at first—until it wasn’t. There was an ease between us from the very beginning, a gentle recognition that made the world feel a little softer. <br></br>
+                    It started the day our paths crossed in a way that felt almost ordinary at first—until it wasn’t.<br></br><br></br> There was an ease between us from the very beginning, a gentle recognition that made the world feel a little softer. <br></br><br></br>
 
-                    Conversations that should have been small stretched into hours. Laughter came easily. Silence felt comfortable. We didn’t know it then, but something rare had already begun to take root.<br></br>
-                    As the days turned into weeks and the weeks into months, we discovered each other slowly, carefully, completely. We learned the way the other smiled when they were truly happy, the quiet ways we showed care, the dreams we carried and the fears we rarely spoke aloud. With Ihechi, I found safety. With me, Ihechi found home. We became each other’s favorite place to land.<br></br>
+                    Conversations that should have been small stretched into hours. Laughter came easily. Silence felt comfortable. We didn’t know it then, but something rare had already begun to take root.<br></br><br></br>
+                    As the days turned into weeks and the weeks into months, we discovered each other slowly, carefully, completely. We learned the way the other smiled when they were truly happy, the quiet ways we showed care, the dreams we carried and the fears we rarely spoke aloud.<br></br><br></br> With Ihechi, I found safety. With me, Ihechi found home. We became each other’s favorite place to land.<br></br>
 
-                    There were ordinary moments that somehow felt extraordinary: shared meals that turned into late-night talks, quiet evenings that filled the room with warmth, and the simple joy of choosing each other again and again. Through every season, bright ones and the harder ones, we grew, not just side by side, but into each other. Love taught us patience. It taught us grace. It taught us that the most beautiful things are often built quietly, day by day.<br></br>
+                    There were ordinary moments that somehow felt extraordinary: shared meals that turned into late-night talks, quiet evenings that filled the room with warmth, and the simple joy of choosing each other again and again. Through every season, bright ones and the harder ones, we grew, not just side by side, but into each other. Love taught us patience. It taught us grace. It taught us that the most beautiful things are often built quietly, day by day.<br></br><br></br>
                     And then came the moment that changed everything.<br></br>
 
-                    When the question was asked and the answer was yes, time seemed to pause. In that sacred space between two hearts, we both knew: this was the beginning of forever. Not a perfect story, but our story, one written with intention, kindness, and a love that keeps choosing the other, every single day.<br></br>
+                    When the question was asked and the answer was yes, time seemed to pause. In that sacred space between two hearts, we both knew: this was the beginning of forever. Not a perfect story, but our story, one written with intention, kindness, and a love that keeps choosing the other, every single day.<br></br><br></br>
 
-                    Today, as we stand on the edge of becoming husband and wife, we look back with full hearts and look forward with even fuller ones.<br></br>
+                    Today, as we stand on the edge of becoming husband and wife, we look back with full hearts and look forward with even fuller ones.<br></br><br></br>
 
                     This is our love journey.<br></br>
                     This is our forever.<br></br>
                     And we cannot wait to walk the rest of it together, hand in hand, heart to heart, always.<br></br>
-                    With love.<br></br>
+                    With love.<br></br><br></br>
 
                     Dan & Rejoice
                   </p>
