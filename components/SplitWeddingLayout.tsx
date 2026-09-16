@@ -853,13 +853,13 @@ export default function SplitWeddingLayout() {
                 <a href="#home" className="hover:text-stone-800 transition">Guest Help</a>
                 <span>•</span>
                 <a href="#home" className="hover:text-stone-800 transition">About</a>
-                <span>•</span>
-                <button
+                <span></span>
+                {/* <button
                   onClick={() => setIsAdminOpen(true)}
                   className="hover:text-stone-800 transition font-medium text-stone-600 underline"
                 >
                   Admin Access
-                </button>
+                </button> */}
               </div>
             </footer>
           </section>
