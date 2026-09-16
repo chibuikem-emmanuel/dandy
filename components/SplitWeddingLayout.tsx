@@ -628,14 +628,19 @@ export default function SplitWeddingLayout() {
                       Colours of the Day are:
                       •
                       <b>Burgundy</b>
+                      <br></br>
                       •
                       <b>Gold</b>
+                      <br></br>
                       •
                       <b>Dusty Rose</b>
+                      <br></br>
                       •
                       <b>Beige</b>
+                      <br></br>
                       •
                       <b>Emerald Green</b>
+                      <br></br>
                       •
                   </p>
                 </div>
