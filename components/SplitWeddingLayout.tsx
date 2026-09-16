@@ -623,19 +623,20 @@ export default function SplitWeddingLayout() {
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">10:00 AM</p>
                   <p className="italic text-gray-600 text-xs sm:text-sm">
-                    The holy solemnization of matrimony and exchange of vows at Rhema University Auditorium, Aba.<br></br>
+                    The holy solemnization of matrimony and exchange of vows at Rhema University Auditorium, Aba.<br></br><br></br>
 
                       Colours of the Day are:
                       •
-                      Burgundy
+                      <b>Burgundy</b>
                       •
-                      Gold
+                      <b>Gold</b>
                       •
-                      Dusty Rose
+                      <b>Dusty Rose</b>
                       •
-                      Beige
+                      <b>Beige</b>
                       •
-                      Emerald Green•
+                      <b>Emerald Green</b>
+                      •
                   </p>
                 </div>
               </div>
