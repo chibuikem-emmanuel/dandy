@@ -619,7 +619,7 @@ export default function SplitWeddingLayout() {
                 <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800 shrink-0 mt-1" />
                 <div>
                   <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">
-                    Dan'sJoy26 - Church Ceremony & Reception, Sat. 14th November 💍❤️
+                    Dan'sJoy26 - Church Ceremony, Sat. 14th November 💍❤️
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">10:00 AM</p>
                   <p className="italic text-gray-600 text-xs sm:text-sm">
