@@ -608,7 +608,7 @@ export default function SplitWeddingLayout() {
                   <h3 className="font-bold text-base sm:text-lg text-[#1A1A1A]">
                     Dan'sJoy26 - Trad & Reception, Fri. 30th October 🥂
                   </h3>
-                  <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">3:00 PM</p>
+                  <p className="text-xs sm:text-sm text-stone-700 font-semibold mb-1.5 sm:mb-2">12:00 PM</p>
                   <p className="italic text-gray-600 text-xs sm:text-sm">
                     Cultural rites, family introductions, and traditional festivities at No. 4 Ubani Ukoma Close, Ogborhill, Aba.
                   </p>
