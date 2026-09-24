@@ -11,7 +11,7 @@ export default function BackgroundMusic() {
 
   // High-quality direct CDN stream for Johnny Drille - Believe Me
   const SONG_URL =
-    "https://cdn.trendybeatz.com/audio/Johnny-Drille-Believe-Me-(TrendyBeatz.com).mp3";
+    "/audio/believe-me.mp3";
 
   const togglePlay = () => {
     if (!audioRef.current) return;
